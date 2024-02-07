@@ -1,13 +1,13 @@
 /** \file main.cpp
 		\brief Contains the main function
 
-		NB:to document global objects (functions, typedefs, enum, macros, etc), you must document the file in which they are defined. That is,
-		you must provide this file comment block.
+		NB:to document global objects (functions, typedefs, enum, macros, etc), you must document the file in which they are defined. That is, you must provide this file comment block.
  */
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <cmath>
@@ -16,16 +16,16 @@
 #include <iostream>
 #include "pong-paddle.h"
 
-// Define some global constants						
+// Defining global constants						
 const int gameWidth = 800; 						// The width of the game screen
 const int gameHeight = 600;						// The height of the game screen
 const sf::Vector2f snakeSize{20, 20};			// The dimensions of the paddle's rectangle
+const float snakeSpeed = 400.f;					// The Snake's speed in the beginning of the game.
 
 /** \fn int main()
  *  \brief This function contains the majority of the code for the game
  *
- *  \return The application exit code: 0 for successful completion; a negative number to indicate an error
- *
+ *  \return The application exit code: 0 for successful completion; a negative number to indicate an error.
  */
 
 int main()
@@ -56,9 +56,6 @@ int main()
 	pauseMessage.setPosition(170.f, 150.f);
 	pauseMessage.setFillColor(sf::Color::White);
 	pauseMessage.setString("Welcome to SFML SNAKE!\nPress space to start the game");
-
-	// Define the paddles properties
-	const float snakeSpeed = 400.f;
 
 	sf::Clock clock;
 	bool isPlaying = false;
@@ -107,6 +104,17 @@ int main()
 					(snake.getPosition().y < gameHeight - 10.f ))
 			{
 				snake.move(0.f, snakeSpeed * deltaTime);
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && (snake.getPosition().x > 10.f))
+			{
+				snake.move(-snakeSpeed * deltaTime, 0.f);
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) &&
+					(snake.getPosition().x < gameWidth - 10.f ))
+			{
+				snake.move(snakeSpeed * deltaTime, 0.f);
 			}
 
 		}
