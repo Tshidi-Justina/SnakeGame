@@ -20,7 +20,7 @@
 const int gameWidth = 800; 						// The width of the game screen
 const int gameHeight = 600;						// The height of the game screen
 const sf::Vector2f snakeSize{20, 20};			// The dimensions of the paddle's rectangle
-const float snakeSpeed = 400.f;					// The Snake's speed in the beginning of the game.
+const float snakeSpeed = 200.f;					// The Snake's speed in the beginning of the game.
 
 /** \fn int main()
  *  \brief This function contains the majority of the code for the game
@@ -58,6 +58,7 @@ int main()
 	pauseMessage.setString("Welcome to SFML SNAKE!\nPress space to start the game");
 
 	sf::Clock clock;
+	sf::Clock moveTimer;
 	bool isPlaying = false;
 
 	while (window.isOpen())
@@ -85,7 +86,6 @@ int main()
 
 					// Reset the position of the paddles and ball
 					snake.setPosition(gameWidth/2, gameHeight/2);
-
 				}
 			}
 		}
@@ -93,26 +93,34 @@ int main()
 		if (isPlaying)
 		{
 			float deltaTime = clock.restart().asSeconds();
+			sf::Vector2f snakePos = snake.getPosition();
 
-			// Move the player's paddle
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && (snake.getPosition().y > snake.getSize().y))
-			{
-				snake.move(0.f, -snakeSpeed * deltaTime);
-			}
+			// Move the Snake
+		// 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && (snake.getPosition().y > snake.getSize().y))
+		// 	{
+		// 		// snake.move(0.f, -snakeSpeed * deltaTime);
+		// 		if(moveTimer.getElapsedTime().asSeconds() > 0.4f)
+		// 		{
+		// 			moveTimer.restart();
+		// 			snake.setPosition(snakePos.x, snakePos.y - 10.f);
+		// 		}
+		// 		else
+		// 		{
+		// 			snake.setPosition(snakePos.x, snakePos.y);
+		// 		}
+		// 	}
 
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && (snake.getPosition().y < gameHeight - snake.getSize().y))
-			{
-				snake.move(0.f, snakeSpeed * deltaTime);
-			}
+		// 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && (snake.getPosition().y < gameHeight - snake.getSize().y))
+		// 	{
+		// 		snake.move(0.f, snakeSpeed * deltaTime);
+		// 	}
 
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && (snake.getPosition().x > snake.getSize().x))
-				snake.move(-snakeSpeed * deltaTime, 0.f);
+		// 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && (snake.getPosition().x > snake.getSize().x))
+		// 		snake.move(-snakeSpeed * deltaTime, 0.f);
 
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) &&
-					(snake.getPosition().x < gameWidth - snake.getSize().x))
-				snake.move(snakeSpeed * deltaTime, 0.f);
-
-		}
+		// 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && (snake.getPosition().x < gameWidth - snake.getSize().x))
+		// 		snake.move(snakeSpeed * deltaTime, 0.f);
+		// }
 
 		// Clear the window
 		window.clear(sf::Color(50, 200, 50));
