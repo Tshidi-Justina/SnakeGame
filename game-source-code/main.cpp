@@ -14,7 +14,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-#include "pong-paddle.h"
+#include "snake.h"
 
 // Defining global constants						
 const int gameWidth = 800; 						// The width of the game screen
@@ -98,7 +98,11 @@ int main()
 
 			//This if statement actually starts the game play by triggering the snake's movement.
 			if(!isSnakeTriggered && (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) | sf::Keyboard::isKeyPressed(sf::Keyboard::Down) | sf::Keyboard::isKeyPressed(sf::Keyboard::Left) | sf::Keyboard::isKeyPressed(sf::Keyboard::Right)))
+			{
 				isSnakeTriggered = true;
+
+			}
+				
 
 			if(isSnakeTriggered)
 			{
