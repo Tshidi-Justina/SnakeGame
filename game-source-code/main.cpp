@@ -60,6 +60,7 @@ int main()
 	sf::Clock clock;
 	sf::Clock moveTimer;
 	bool isPlaying = false;
+	bool isSnakeTriggered = false;
 
 	while (window.isOpen())
 	{
@@ -95,7 +96,26 @@ int main()
 			float deltaTime = clock.restart().asSeconds();
 			sf::Vector2f snakePos = snake.getPosition();
 
-			// Move the Snake
+			//This if statement actually starts the game play by triggering the snake's movement.
+			if(!isSnakeTriggered && (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) | sf::Keyboard::isKeyPressed(sf::Keyboard::Down) | sf::Keyboard::isKeyPressed(sf::Keyboard::Left) | sf::Keyboard::isKeyPressed(sf::Keyboard::Right)))
+				isSnakeTriggered = true;
+
+			if(isSnakeTriggered)
+			{
+				// if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && (snake.getPosition().y > snake.getSize().y))
+				// 	snake.move(0.f, -snakeSpeed * deltaTime);
+
+				// if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && (snake.getPosition().y < gameHeight - snake.getSize().y))
+				// 	snake.move(0.f, snakeSpeed * deltaTime);
+
+				// if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && (snake.getPosition().x > snake.getSize().x))
+				// 	snake.move(-snakeSpeed * deltaTime, 0.f);
+
+				// if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && (snake.getPosition().x < gameWidth - snake.getSize().x))
+				// 	snake.move(snakeSpeed * deltaTime, 0.f);
+			}
+
+		// Move the Snake
 		// 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && (snake.getPosition().y > snake.getSize().y))
 		// 	{
 		// 		// snake.move(0.f, -snakeSpeed * deltaTime);
@@ -120,7 +140,7 @@ int main()
 
 		// 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && (snake.getPosition().x < gameWidth - snake.getSize().x))
 		// 		snake.move(snakeSpeed * deltaTime, 0.f);
-		// }
+		}
 
 		// Clear the window
 		window.clear(sf::Color(50, 200, 50));
