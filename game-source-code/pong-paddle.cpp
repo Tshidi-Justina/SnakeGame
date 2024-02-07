@@ -2,7 +2,7 @@
     \brief No need to document class implementations (cpp files)
  */
 
-
+/**
 #include <SFML/Graphics.hpp>
 #include "pong-paddle.h"
 
@@ -18,3 +18,4 @@ sf::RectangleShape makeLeftPaddle()
     leftPaddle.setOrigin(leftPaddleSize / 2.f);
     return leftPaddle;
 }
+*/

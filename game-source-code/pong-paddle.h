@@ -1,58 +1,60 @@
-#ifndef PONGPADDLE
-#define PONGPADDLE
+// #ifndef PONGPADDLE
+// #define PONGPADDLE
 
-/** \file pong-paddle.h
-    \brief Contains code for constructing the left paddle as well a dummy class hierarchy
+// /** \file pong-paddle.h
+//     \brief Contains code for constructing the left paddle as well a dummy class hierarchy
 
-    NB:to document global objects (functions, typedefs, enum, macros, etc), you must document the file in which they are defined. That is,
-    you must provide this file comment block.
- */
+//     NB:to document global objects (functions, typedefs, enum, macros, etc), you must document the file in which they are defined. That is,
+//     you must provide this file comment block.
+//  */
 
-#include <SFML/Graphics.hpp>
+// #include <SFML/Graphics.hpp>
 
-const sf::Vector2f leftPaddleSize{25, 100}; /**< The size of the left paddle's rectangle */
+// const sf::Vector2f leftPaddleSize{20, 20}; /**< The size of the snake at the beginning. */
 
-/** \fn sf::RectangleShape makeLeftPaddle();
- *  \brief This function constructs the left paddle
- *
- *  \return An SFML RectangleShape representing the paddle
- *
- */
-sf::RectangleShape makeLeftPaddle();
+// /** \fn sf::RectangleShape makeLeftPaddle();
+//  *  \brief This function constructs the snake
+//  *
+//  *  \return An SFML RectangleShape representing the snake at the beginning of the game.
+//  *
+//  */
 
-/** \class Parent
-    \brief An almost empty base class
+// sf::RectangleShape makeLeftPaddle();
 
-    Here you can give a longer description
- */
-class Parent
-{
-public:
-    /** \brief This does something with numbers!
+// /** \class Parent
+//     \brief An almost empty base class
 
-        Here you can give a longer description if you want.
-        \param x This ranges from [0,100]. Values outside this range cause an exception to be thrown.
-        \return True if the calculation has completed; false if it needs to be retried with a higher value of x.
-    */
-    bool doSomething(int x);
+//     Here you can give a longer description
+//  */
 
-private:
-    /** \brief Doxygen ignores private methods by default.
+// class Parent
+// {
+// public:
+//     /** \brief This does something with numbers!
 
-        That's fine - you do not need to document these for your technical reference
-        \param x This ranges from [0,100]. Values outside this range cause an exception to be thrown.
-        \return True if the calculation has completed; false if it needs to be retried with a higher value of x.
-    */
-    bool doSomethingElse(int x);
-};
+//         Here you can give a longer description if you want.
+//         \param x This ranges from [0,100]. Values outside this range cause an exception to be thrown.
+//         \return True if the calculation has completed; false if it needs to be retried with a higher value of x.
+//     */
+//     bool doSomething(int x);
 
-/** \class Child
-    \brief An empty derived class
+// private:
+//     /** \brief Doxygen ignores private methods by default.
 
-   Here you can give a longer description
- */
-class Child : public Parent
-{
-};
+//         That's fine - you do not need to document these for your technical reference
+//         \param x This ranges from [0,100]. Values outside this range cause an exception to be thrown.
+//         \return True if the calculation has completed; false if it needs to be retried with a higher value of x.
+//     */
+//     bool doSomethingElse(int x);
+// };
 
-#endif
+// /** \class Child
+//     \brief An empty derived class
+
+//    Here you can give a longer description
+//  */
+// class Child : public Parent
+// {
+// };
+
+// #endif

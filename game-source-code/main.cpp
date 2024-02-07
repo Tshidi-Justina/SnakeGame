@@ -87,7 +87,7 @@ int main()
 					clock.restart();
 
 					// Reset the position of the paddles and ball
-					snake.setPosition(gameWidth / 2, gameHeight / 2);
+					snake.setPosition(gameWidth/2, gameHeight/2);
 
 				}
 			}
@@ -104,7 +104,7 @@ int main()
 			}
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) &&
-					(snake.getPosition().y > gameHeight - 10.f ))
+					(snake.getPosition().y < gameHeight - 10.f ))
 			{
 				snake.move(0.f, snakeSpeed * deltaTime);
 			}
