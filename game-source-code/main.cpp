@@ -49,7 +49,7 @@ int main()
 	pauseMessage.setCharacterSize(40);
 	pauseMessage.setPosition(170.f, 150.f);
 	pauseMessage.setFillColor(sf::Color::White);
-	pauseMessage.setString("Welcome to SFML PONG!\nPress space to start the game");
+	pauseMessage.setString("Welcome to SFML SNAKE!\nPress space to start the game");
 
 	// Define the paddles properties
 	const float paddleSpeed = 400.f;
@@ -95,7 +95,7 @@ int main()
 			{
 				leftPaddle.move(0.f, -paddleSpeed * deltaTime);
 			}
-			
+
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) &&
 					(leftPaddle.getPosition().y + leftPaddleSize.y / 2 < gameHeight - 5.f))
 			{
