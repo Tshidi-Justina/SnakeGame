@@ -19,7 +19,7 @@
 // Define some global constants						
 const int gameWidth = 800; 						// The width of the game screen
 const int gameHeight = 600;						// The height of the game screen
-const sf::Vector2f paddleSize{20, 20};			// The dimensions of the paddle's rectangle
+const sf::Vector2f snakeSize{20, 20};			// The dimensions of the paddle's rectangle
 
 /** \fn int main()
  *  \brief This function contains the majority of the code for the game
@@ -36,7 +36,13 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(gameWidth, gameHeight, 32), "SFML SNAKE", sf::Style::Titlebar | sf::Style::Close);
 	window.setVerticalSyncEnabled(true);
 
-	auto leftPaddle = makeLeftPaddle();
+	// Create the Snake
+	auto snake = sf::RectangleShape{};
+	snake.setSize(snakeSize - sf::Vector2f(1, 1));
+	snake.setOutlineThickness(3);
+	snake.setOutlineColor(sf::Color::Blue);
+	snake.setFillColor(sf::Color(100, 100, 200));
+	snake.setOrigin(snakeSize / 2.f);
 
 	// Load the text font
 	sf::Font font;
@@ -52,17 +58,18 @@ int main()
 	pauseMessage.setString("Welcome to SFML SNAKE!\nPress space to start the game");
 
 	// Define the paddles properties
-	const float paddleSpeed = 400.f;
+	const float snakeSpeed = 400.f;
 
 	sf::Clock clock;
 	bool isPlaying = false;
+
 	while (window.isOpen())
 	{
 		// Handle events
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			// Window closed or escape key pressed: exit
+			// Window closed or escape key pressed: Exit
 			if ((event.type == sf::Event::Closed) ||
 					((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape)))
 			{
@@ -80,7 +87,7 @@ int main()
 					clock.restart();
 
 					// Reset the position of the paddles and ball
-					leftPaddle.setPosition(10 + leftPaddleSize.x / 2, gameHeight / 2);
+					snake.setPosition(gameWidth / 2, gameHeight / 2);
 
 				}
 			}
@@ -91,15 +98,15 @@ int main()
 			float deltaTime = clock.restart().asSeconds();
 
 			// Move the player's paddle
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && (leftPaddle.getPosition().y - leftPaddleSize.y / 2 > 5.f))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && (snake.getPosition().y > 10.f))
 			{
-				leftPaddle.move(0.f, -paddleSpeed * deltaTime);
+				snake.move(0.f, -snakeSpeed * deltaTime);
 			}
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) &&
-					(leftPaddle.getPosition().y + leftPaddleSize.y / 2 < gameHeight - 5.f))
+					(snake.getPosition().y > gameHeight - 10.f ))
 			{
-				leftPaddle.move(0.f, paddleSpeed * deltaTime);
+				snake.move(0.f, snakeSpeed * deltaTime);
 			}
 
 		}
@@ -109,8 +116,8 @@ int main()
 
 		if (isPlaying)
 		{
-			// Draw the paddles and the ball
-			window.draw(leftPaddle);
+			// Draw the snake
+			window.draw(snake);
 		}
 		else
 		{
