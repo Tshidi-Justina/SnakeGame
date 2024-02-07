@@ -96,16 +96,19 @@ int main()
 
 			// Move the player's paddle
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && (snake.getPosition().y > snake.getSize().y))
+			{
 				snake.move(0.f, -snakeSpeed * deltaTime);
+			}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) &&
-					(snake.getPosition().y < gameHeight - snake.getSize().y))
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && (snake.getPosition().y < gameHeight - snake.getSize().y))
+			{
 				snake.move(0.f, snakeSpeed * deltaTime);
+			}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && (snake.getPosition().x > snake.getSize().x))
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && (snake.getPosition().x > snake.getSize().x))
 				snake.move(-snakeSpeed * deltaTime, 0.f);
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) &&
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) &&
 					(snake.getPosition().x < gameWidth - snake.getSize().x))
 				snake.move(snakeSpeed * deltaTime, 0.f);
 
